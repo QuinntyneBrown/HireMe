@@ -1,9 +1,5 @@
-using HireMe.TestUtilities.AuthenticationHandlers;
-using HireMe.TestUtilities.Builders;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.TestHost;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http.Headers;
+using HireMe.Domain.Features.Roles;
+using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -19,14 +15,16 @@ namespace HireMe.FunctionalTests.Controllers
 
         [Fact]
         public async Task ReturnsRoles()
-        {
-            var token = TokenBuilder.CreateToken("Test User", new string[0]);
+        {            
+            var client = _factory.CreateAuthenticatedClient();
 
-            var client = _factory.CreateClient(token);
+            var httpResponseMessage = await client.GetAsync("api/roles");
 
-            var response = await client.GetAsync("api/roles");
+            httpResponseMessage.EnsureSuccessStatusCode();
 
-            response.EnsureSuccessStatusCode();
+            var response = JsonConvert.DeserializeObject<GetRoles.Response>(await httpResponseMessage.Content.ReadAsStringAsync());
+
+            Assert.NotEmpty(response.Roles);
         }
     }
 
