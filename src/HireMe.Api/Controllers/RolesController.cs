@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using HireMe.Domain.Features.Roles;
 using System.Net;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace HireMe.Api.Controllers
 {
@@ -12,8 +13,12 @@ namespace HireMe.Api.Controllers
     public class RolesController
     {
         private readonly IMediator _mediator;
-
-        public RolesController(IMediator mediator) => _mediator = mediator;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        public RolesController(IMediator mediator, IHttpContextAccessor httpContextAccessor)
+        {
+            _mediator = mediator;
+            _httpContextAccessor = httpContextAccessor; 
+        }
 
         [Authorize]
         [HttpPost(Name = "UpsertRoleRoute")]

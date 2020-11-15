@@ -1,7 +1,10 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.IdentityModel.Tokens;
+using System;
 
 namespace HireMe.Api
 {
@@ -22,6 +25,16 @@ namespace HireMe.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseExceptionHandler(errorApp =>
+            {
+                errorApp.Use(async (context, next) =>
+                {
+                    Console.Write("wtf");
+
+                    await next();
+                });
+            });
+
             app.UseSwagger();
 
             app.UseCors("CorsPolicy");

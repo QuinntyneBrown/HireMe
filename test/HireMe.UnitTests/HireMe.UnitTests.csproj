@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="MediatR" Version="9.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="5.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.1" />
     <PackageReference Include="Moq" Version="4.15.1" />
     <PackageReference Include="xunit" Version="2.4.1" />
@@ -25,6 +26,7 @@
     <ProjectReference Include="..\..\src\HireMe.Core\HireMe.Core.csproj" />
     <ProjectReference Include="..\..\src\HireMe.Domain\HireMe.Domain.csproj" />
     <ProjectReference Include="..\..\src\HireMe.Api\HireMe.Api.csproj" />
+    <ProjectReference Include="..\HireMe.TestUtilities\HireMe.TestUtilities.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HireMe.Domain.NotificationHandler.EmployeerCreatedHandler
+namespace HireMe.Domain.NotificationHandlers.EmployeerCreatedHandler
 {
     public class EmployeerCreatedHandler : INotificationHandler<EmployeerCreatedEvent>
     {

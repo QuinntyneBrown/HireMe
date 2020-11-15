@@ -101,7 +101,24 @@ namespace HireMe.Api
                             }
                         };
                     });
+            }
 
+            if (hostingEnvironment.IsEnvironment("Testing"))
+            {
+                services.AddEntityFrameworkInMemoryDatabase();
+
+                var provider = services
+                    .AddEntityFrameworkInMemoryDatabase()
+                    .BuildServiceProvider();
+
+                services.AddDbContext<HireMeDbContext>(options =>
+                {
+                    options.UseInMemoryDatabase("InMemoryDbForTesting");
+                    options.UseInternalServiceProvider(provider);
+                });
+            } 
+            else
+            {
                 services.AddDbContext<HireMeDbContext>(options =>
                 {
                     options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
@@ -110,12 +127,13 @@ namespace HireMe.Api
                     .UseLoggerFactory(HireMeDbContext.ConsoleLoggerFactory)
                     .EnableSensitiveDataLogging();
                 });
+
             }
 
             services.AddControllers();
         }
 
-        private static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
+        public static TokenValidationParameters GetTokenValidationParameters(IConfiguration configuration)
         {
             var tokenValidationParameters = new TokenValidationParameters
             {

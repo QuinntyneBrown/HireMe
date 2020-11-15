@@ -1,29 +1,31 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30711.63
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C59C5CE4-401E-4312-B03E-9CEE35B438AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.Core", "src\HireMe.Core\HireMe.Core.csproj", "{5D75FC92-FD4C-4AE7-8865-AE9DBFAEF8BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.Core", "src\HireMe.Core\HireMe.Core.csproj", "{5D75FC92-FD4C-4AE7-8865-AE9DBFAEF8BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.Domain", "src\HireMe.Domain\HireMe.Domain.csproj", "{8B2B8921-1726-4BA1-8AB2-A35080E07C65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.Domain", "src\HireMe.Domain\HireMe.Domain.csproj", "{8B2B8921-1726-4BA1-8AB2-A35080E07C65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.Api", "src\HireMe.Api\HireMe.Api.csproj", "{06BCDBDC-FCAE-442B-98CD-69D4EB48F8BB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.Api", "src\HireMe.Api\HireMe.Api.csproj", "{06BCDBDC-FCAE-442B-98CD-69D4EB48F8BB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{AB15EC0C-142F-419E-A7E1-6ACF0592EE3D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.IntegrationTests", "test\HireMe.IntegrationTests\HireMe.IntegrationTests.csproj", "{5DA20E4F-9B84-4F45-B24B-D55D02FC9865}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.IntegrationTests", "test\HireMe.IntegrationTests\HireMe.IntegrationTests.csproj", "{5DA20E4F-9B84-4F45-B24B-D55D02FC9865}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.FunctionalTests", "test\HireMe.FunctionalTests\HireMe.FunctionalTests.csproj", "{FC2C6E28-7098-4341-8645-3A4557F54551}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.FunctionalTests", "test\HireMe.FunctionalTests\HireMe.FunctionalTests.csproj", "{FC2C6E28-7098-4341-8645-3A4557F54551}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HireMe.UnitTests", "test\HireMe.UnitTests\HireMe.UnitTests.csproj", "{A3636140-70EF-4473-8289-38B76914F902}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.UnitTests", "test\HireMe.UnitTests\HireMe.UnitTests.csproj", "{A3636140-70EF-4473-8289-38B76914F902}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "building-blocks", "building-blocks", "{AB040692-9A25-43DB-8119-F63944D7AD75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.Core", "building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj", "{ED74A225-9643-47D6-91BC-26ABF434FC1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.Core", "building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj", "{ED74A225-9643-47D6-91BC-26ABF434FC1E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildingBlocks.AspNetCore", "building-blocks\BuildingBlocks.AspNetCore\BuildingBlocks.AspNetCore.csproj", "{838AAD02-6824-4706-8BD3-CE395DE0648D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BuildingBlocks.AspNetCore", "building-blocks\BuildingBlocks.AspNetCore\BuildingBlocks.AspNetCore.csproj", "{838AAD02-6824-4706-8BD3-CE395DE0648D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HireMe.TestUtilities", "test\HireMe.TestUtilities\HireMe.TestUtilities.csproj", "{599531E6-456D-4348-BFD6-FD4BB6900022}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,9 +35,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{5D75FC92-FD4C-4AE7-8865-AE9DBFAEF8BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -134,6 +133,21 @@ Global
 		{838AAD02-6824-4706-8BD3-CE395DE0648D}.Release|x64.Build.0 = Release|Any CPU
 		{838AAD02-6824-4706-8BD3-CE395DE0648D}.Release|x86.ActiveCfg = Release|Any CPU
 		{838AAD02-6824-4706-8BD3-CE395DE0648D}.Release|x86.Build.0 = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|x64.Build.0 = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Debug|x86.Build.0 = Debug|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|x64.ActiveCfg = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|x64.Build.0 = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|x86.ActiveCfg = Release|Any CPU
+		{599531E6-456D-4348-BFD6-FD4BB6900022}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5D75FC92-FD4C-4AE7-8865-AE9DBFAEF8BA} = {C59C5CE4-401E-4312-B03E-9CEE35B438AC}
@@ -144,5 +158,9 @@ Global
 		{A3636140-70EF-4473-8289-38B76914F902} = {AB15EC0C-142F-419E-A7E1-6ACF0592EE3D}
 		{ED74A225-9643-47D6-91BC-26ABF434FC1E} = {AB040692-9A25-43DB-8119-F63944D7AD75}
 		{838AAD02-6824-4706-8BD3-CE395DE0648D} = {AB040692-9A25-43DB-8119-F63944D7AD75}
+		{599531E6-456D-4348-BFD6-FD4BB6900022} = {AB15EC0C-142F-419E-A7E1-6ACF0592EE3D}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6CCF202-382D-449C-8620-521B2D233547}
 	EndGlobalSection
 EndGlobal

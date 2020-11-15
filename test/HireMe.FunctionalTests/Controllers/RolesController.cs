@@ -1,4 +1,9 @@
-using System.Net.Http;
+using HireMe.TestUtilities.AuthenticationHandlers;
+using HireMe.TestUtilities.Builders;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.TestHost;
+using Microsoft.Extensions.DependencyInjection;
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -6,17 +11,24 @@ namespace HireMe.FunctionalTests.Controllers
 {
     public class RolesController : IClassFixture<ApiTestFixture>
     {
-        private readonly HttpClient _client;
+        private readonly ApiTestFixture _factory;
         public RolesController(ApiTestFixture factory)
         {
-            _client = factory.CreateClient();
+            _factory = factory;
         }
 
         [Fact]
         public async Task ReturnsRoles()
         {
-            var response = await _client.GetAsync("/api/roles");
+            var token = TokenBuilder.CreateToken("Test User", new string[0]);
+
+            var client = _factory.CreateClient(token);
+
+            var response = await client.GetAsync("api/roles");
+
             response.EnsureSuccessStatusCode();
         }
     }
+
+
 }

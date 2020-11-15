@@ -24,6 +24,7 @@
     <ProjectReference Include="..\..\src\HireMe.Core\HireMe.Core.csproj" />
     <ProjectReference Include="..\..\src\HireMe.Domain\HireMe.Domain.csproj" />
     <ProjectReference Include="..\..\src\HireMe.Api\HireMe.Api.csproj" />
+    <ProjectReference Include="..\HireMe.TestUtilities\HireMe.TestUtilities.csproj" />
   </ItemGroup>
 
 </Project>
