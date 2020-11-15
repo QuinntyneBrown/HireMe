@@ -9,7 +9,7 @@ namespace BuildingBlocks.Core.Identity
     }
 
     public class PasswordHasher : IPasswordHasher
-    {        
+    {
         public string HashPassword(Byte[] salt, string password)
         {
             return Convert.ToBase64String(KeyDerivation.Pbkdf2(

@@ -18,7 +18,8 @@ namespace HireMe.Domain.Features.Videos
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public VideoDto Video { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace HireMe.Domain.Features.Videos
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var video = await _context.Videos.FindAsync(request.Video.VideoId);
 
@@ -47,7 +49,8 @@ namespace HireMe.Domain.Features.Videos
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-			    return new Response() { 
+                return new Response()
+                {
                     Video = video.ToDto()
                 };
             }

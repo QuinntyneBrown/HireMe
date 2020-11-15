@@ -18,7 +18,8 @@ namespace HireMe.Domain.Features.Roles
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public RoleDto Role { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace HireMe.Domain.Features.Roles
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var role = await _context.Roles.FindAsync(request.Role.RoleId);
 
@@ -47,7 +49,8 @@ namespace HireMe.Domain.Features.Roles
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-			    return new Response() { 
+                return new Response()
+                {
                     Role = role.ToDto()
                 };
             }

@@ -6,7 +6,7 @@ namespace HireMe.Domain.Features.Answers
     {
         public AnswerValidator()
         {
-            
+
         }
     }
 }

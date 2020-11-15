@@ -18,7 +18,8 @@ namespace HireMe.Domain.Features.Opportunities
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public OpportunityDto Opportunity { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace HireMe.Domain.Features.Opportunities
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var opportunity = await _context.Opportunities.FindAsync(request.Opportunity.OpportunityId);
 
@@ -46,11 +48,12 @@ namespace HireMe.Domain.Features.Opportunities
                 opportunity.OpportunityId = request.Opportunity.OpportunityId;
                 opportunity.Name = request.Opportunity.Name;
                 opportunity.EmployeerId = request.Opportunity.EmployeerId;
-                
+
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-			    return new Response() { 
+                return new Response()
+                {
                     Opportunity = opportunity.ToDto()
                 };
             }

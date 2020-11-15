@@ -10,7 +10,7 @@ namespace HireMe.Domain.Features.Identity
 {
     public class GetCurrentUser
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -28,10 +28,12 @@ namespace HireMe.Domain.Features.Identity
                 _httpContextAccessor = httpContextAccessor;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var user = await _context.Users.Include(x => x.Roles).SingleAsync(x => x.Username == _httpContextAccessor.HttpContext.User.Identity.Name);
-			    return new Response() { 
+                return new Response()
+                {
                     CurrentUser = user.ToDto()
                 };
             }

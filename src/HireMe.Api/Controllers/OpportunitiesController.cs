@@ -20,7 +20,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpsertOpportunity.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpsertOpportunity.Response>> Upsert([FromBody]UpsertOpportunity.Request request)
+        public async Task<ActionResult<UpsertOpportunity.Response>> Upsert([FromBody] UpsertOpportunity.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveOpportunity.Request request)
+        public async Task Remove([FromRoute] RemoveOpportunity.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetOpportunityById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetOpportunityById.Response>> GetById([FromRoute]GetOpportunityById.Request request)
+        public async Task<ActionResult<GetOpportunityById.Response>> GetById([FromRoute] GetOpportunityById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetOpportunities.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetOpportunities.Response>> Get()
-            => await _mediator.Send(new GetOpportunities.Request());           
+            => await _mediator.Send(new GetOpportunities.Request());
     }
 }

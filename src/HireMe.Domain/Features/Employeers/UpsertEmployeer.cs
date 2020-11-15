@@ -19,7 +19,8 @@ namespace HireMe.Domain.Features.Employeers
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public EmployeerDto Employeer { get; set; }
         }
 
@@ -39,7 +40,8 @@ namespace HireMe.Domain.Features.Employeers
                 _mediator = mediator;
             }
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var employeer = await _context.Employeers.FindAsync(request.Employeer.EmployeerId);
 
@@ -52,17 +54,18 @@ namespace HireMe.Domain.Features.Employeers
                 employeer.FirstName = request.Employeer.FirstName;
 
                 employeer.LastName = request.Employeer.LastName;
-                
+
                 employeer.Email = request.Employeer.Email;
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-                if(request.Employeer.EmployeerId == default)
+                if (request.Employeer.EmployeerId == default)
                 {
                     await _mediator.Publish(new EmployeerCreatedEvent(employeer), cancellationToken);
                 }
 
-			    return new Response() { 
+                return new Response()
+                {
                     Employeer = employeer.ToDto()
                 };
             }

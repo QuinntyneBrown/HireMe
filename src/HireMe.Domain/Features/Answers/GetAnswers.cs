@@ -10,7 +10,7 @@ namespace HireMe.Domain.Features.Answers
 {
     public class GetAnswers
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace HireMe.Domain.Features.Answers
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Answers = await _context.Answers.Select(x => x.ToDto()).ToListAsync()
                 };
             }

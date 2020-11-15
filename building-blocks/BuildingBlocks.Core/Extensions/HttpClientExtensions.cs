@@ -14,7 +14,7 @@ namespace BuildingBlocks.Core.Extensions
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauth2Header.Split(' ')[1]);
 
             content.Headers.ContentType = new MediaTypeWithQualityHeaderValue("application/json");
-            
+
             var responseMessage = await client.PostAsync(url, content);
 
             return JsonConvert.DeserializeObject<TResult>(await responseMessage.Content.ReadAsStringAsync());
@@ -33,7 +33,7 @@ namespace BuildingBlocks.Core.Extensions
 
         public static async Task<TOut> PostAsAsync<TIn, TOut>(this HttpClient client, string url, TIn content, string oauth2Header = null)
         {
-            if(!string.IsNullOrEmpty(oauth2Header))
+            if (!string.IsNullOrEmpty(oauth2Header))
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauth2Header.Split(' ')[1]);
 
             var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
@@ -49,7 +49,7 @@ namespace BuildingBlocks.Core.Extensions
         {
             if (!string.IsNullOrEmpty(oauth2Header))
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", oauth2Header.Split(' ')[1]);
-            
+
             var stringContent = new StringContent(JsonConvert.SerializeObject(content), Encoding.UTF8, "application/json");
 
             var responseMessage = await client.PutAsync(url, stringContent);

@@ -25,15 +25,16 @@ namespace BuildingBlocks.DelegatingHandlers
             Context context = new Polly.Context {
                 { "retrycount", 0}
             };
-            
+
             return Policy
                 .Handle<HttpRequestException>()
                 .WaitAndRetryAsync(5, (n) => TimeSpan.FromSeconds(n), (Action<Exception, TimeSpan, int, Context>)LogFailure)
-                .ExecuteAsync(() => ((Func<Context,Task<HttpResponseMessage>>)ExecuteAsync)(context));
+                .ExecuteAsync(() => ((Func<Context, Task<HttpResponseMessage>>)ExecuteAsync)(context));
 
         }
 
-        private async Task<HttpResponseMessage> ExecuteAsync(Context context) {
+        private async Task<HttpResponseMessage> ExecuteAsync(Context context)
+        {
 
             if (context.TryGetValue("retrycount", out var retryObject) && retryObject is int retries)
             {

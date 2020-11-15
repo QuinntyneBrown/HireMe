@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Roles
 {
     public class RemoveRole
     {
-        public class Request : IRequest<Unit> {  
-            public Guid RoleId { get; set; }        
+        public class Request : IRequest<Unit>
+        {
+            public Guid RoleId { get; set; }
         }
 
         public class Handler : IRequestHandler<Request, Unit>
@@ -18,12 +19,13 @@ namespace HireMe.Domain.Features.Roles
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken) {
-                
+            public async Task<Unit> Handle(Request request, CancellationToken cancellationToken)
+            {
+
                 _context.Roles.Remove(await _context.Roles.FindAsync(request.RoleId));
-                
-                await _context.SaveChangesAsync(cancellationToken);			    
-                
+
+                await _context.SaveChangesAsync(cancellationToken);
+
                 return new Unit();
             }
         }

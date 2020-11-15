@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Roles
 {
     public class GetRoleById
     {
-        public class Request : IRequest<Response> {  
-            public Guid RoleId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid RoleId { get; set; }
         }
 
         public class Response
@@ -23,8 +24,10 @@ namespace HireMe.Domain.Features.Roles
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Role = (await _context.Roles.FindAsync(request.RoleId)).ToDto()
                 };
             }

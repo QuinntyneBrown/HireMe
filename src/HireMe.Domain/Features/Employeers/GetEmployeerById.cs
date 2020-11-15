@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Employeers
 {
     public class GetEmployeerById
     {
-        public class Request : IRequest<Response> {  
-            public Guid EmployeerId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid EmployeerId { get; set; }
         }
 
         public class Response
@@ -23,8 +24,10 @@ namespace HireMe.Domain.Features.Employeers
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Employeer = (await _context.Employeers.FindAsync(request.EmployeerId)).ToDto()
                 };
             }

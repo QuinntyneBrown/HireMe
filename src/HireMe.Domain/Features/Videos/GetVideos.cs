@@ -10,7 +10,7 @@ namespace HireMe.Domain.Features.Videos
 {
     public class GetVideos
     {
-        public class Request : IRequest<Response> {  }
+        public class Request : IRequest<Response> { }
 
         public class Response
         {
@@ -23,8 +23,10 @@ namespace HireMe.Domain.Features.Videos
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Videos = await _context.Videos.Select(x => x.ToDto()).ToListAsync()
                 };
             }

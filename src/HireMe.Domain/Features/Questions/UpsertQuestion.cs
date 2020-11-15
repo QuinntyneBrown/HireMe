@@ -18,7 +18,8 @@ namespace HireMe.Domain.Features.Questions
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public QuestionDto Question { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace HireMe.Domain.Features.Questions
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var question = await _context.Questions.FindAsync(request.Question.QuestionId);
 
@@ -47,7 +49,8 @@ namespace HireMe.Domain.Features.Questions
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-			    return new Response() { 
+                return new Response()
+                {
                     Question = question.ToDto()
                 };
             }

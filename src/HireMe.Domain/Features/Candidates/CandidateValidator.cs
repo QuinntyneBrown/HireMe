@@ -6,7 +6,7 @@ namespace HireMe.Domain.Features.Candidates
     {
         public CandidateValidator()
         {
-            
+
         }
     }
 }

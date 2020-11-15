@@ -9,10 +9,10 @@ using System.Threading;
 using System.Threading.Tasks;
 
 namespace HireMe.Domain.NotificationHandler.EmployeerCreatedHandler
-{    
+{
     public class EmployeerCreatedHandler : INotificationHandler<EmployeerCreatedEvent>
     {
-        private readonly IHireMeDbContext  _context;
+        private readonly IHireMeDbContext _context;
         private readonly IPasswordHasher _passwordHasher;
         private readonly IConfiguration _configuration;
 

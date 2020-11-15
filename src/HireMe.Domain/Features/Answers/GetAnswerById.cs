@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Answers
 {
     public class GetAnswerById
     {
-        public class Request : IRequest<Response> {  
-            public Guid AnswerId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid AnswerId { get; set; }
         }
 
         public class Response
@@ -23,8 +24,10 @@ namespace HireMe.Domain.Features.Answers
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Answer = (await _context.Answers.FindAsync(request.AnswerId)).ToDto()
                 };
             }

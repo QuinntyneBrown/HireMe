@@ -4,10 +4,10 @@ using HireMe.Core.Models;
 
 namespace HireMe.Core.Data
 {
-    public class HireMeDbContext: DbContext, IHireMeDbContext
+    public class HireMeDbContext : DbContext, IHireMeDbContext
     {
         public HireMeDbContext(DbContextOptions options)
-            :base(options) { }
+            : base(options) { }
 
         public static readonly ILoggerFactory ConsoleLoggerFactory
             = LoggerFactory.Create(builder => { builder.AddConsole(); });
@@ -21,7 +21,7 @@ namespace HireMe.Core.Data
         public DbSet<Role> Roles { get; private set; }
         public DbSet<User> Users { get; private set; }
         public DbSet<Video> Videos { get; private set; }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 

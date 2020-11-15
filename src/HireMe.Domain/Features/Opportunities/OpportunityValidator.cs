@@ -6,7 +6,7 @@ namespace HireMe.Domain.Features.Opportunities
     {
         public OpportunityValidator()
         {
-            
+
         }
     }
 }

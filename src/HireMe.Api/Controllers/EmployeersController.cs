@@ -20,7 +20,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpsertEmployeer.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpsertEmployeer.Response>> Upsert([FromBody]UpsertEmployeer.Request request)
+        public async Task<ActionResult<UpsertEmployeer.Response>> Upsert([FromBody] UpsertEmployeer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveEmployeer.Request request)
+        public async Task Remove([FromRoute] RemoveEmployeer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEmployeerById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetEmployeerById.Response>> GetById([FromRoute]GetEmployeerById.Request request)
+        public async Task<ActionResult<GetEmployeerById.Response>> GetById([FromRoute] GetEmployeerById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetEmployeers.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetEmployeers.Response>> Get()
-            => await _mediator.Send(new GetEmployeers.Request());           
+            => await _mediator.Send(new GetEmployeers.Request());
     }
 }

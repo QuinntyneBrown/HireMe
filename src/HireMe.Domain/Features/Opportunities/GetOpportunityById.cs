@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Opportunities
 {
     public class GetOpportunityById
     {
-        public class Request : IRequest<Response> {  
-            public Guid OpportunityId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid OpportunityId { get; set; }
         }
 
         public class Response
@@ -23,8 +24,10 @@ namespace HireMe.Domain.Features.Opportunities
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Opportunity = (await _context.Opportunities.FindAsync(request.OpportunityId)).ToDto()
                 };
             }

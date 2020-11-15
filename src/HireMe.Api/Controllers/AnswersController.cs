@@ -20,7 +20,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpsertAnswer.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpsertAnswer.Response>> Upsert([FromBody]UpsertAnswer.Request request)
+        public async Task<ActionResult<UpsertAnswer.Response>> Upsert([FromBody] UpsertAnswer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveAnswer.Request request)
+        public async Task Remove([FromRoute] RemoveAnswer.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetAnswerById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetAnswerById.Response>> GetById([FromRoute]GetAnswerById.Request request)
+        public async Task<ActionResult<GetAnswerById.Response>> GetById([FromRoute] GetAnswerById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetAnswers.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetAnswers.Response>> Get()
-            => await _mediator.Send(new GetAnswers.Request());           
+            => await _mediator.Send(new GetAnswers.Request());
     }
 }

@@ -18,7 +18,8 @@ namespace HireMe.Domain.Features.Candidates
             }
         }
 
-        public class Request : IRequest<Response> {  
+        public class Request : IRequest<Response>
+        {
             public CandidateDto Candidate { get; set; }
         }
 
@@ -33,7 +34,8 @@ namespace HireMe.Domain.Features.Candidates
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
 
                 var candidate = await _context.Candidates.FindAsync(request.Candidate.CandidateId);
 
@@ -47,7 +49,8 @@ namespace HireMe.Domain.Features.Candidates
 
                 await _context.SaveChangesAsync(cancellationToken);
 
-			    return new Response() { 
+                return new Response()
+                {
                     Candidate = candidate.ToDto()
                 };
             }

@@ -8,8 +8,9 @@ namespace HireMe.Domain.Features.Videos
 {
     public class GetVideoById
     {
-        public class Request : IRequest<Response> {  
-            public Guid VideoId { get; set; }        
+        public class Request : IRequest<Response>
+        {
+            public Guid VideoId { get; set; }
         }
 
         public class Response
@@ -23,8 +24,10 @@ namespace HireMe.Domain.Features.Videos
 
             public Handler(IHireMeDbContext context) => _context = context;
 
-            public async Task<Response> Handle(Request request, CancellationToken cancellationToken) {
-			    return new Response() { 
+            public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
+            {
+                return new Response()
+                {
                     Video = (await _context.Videos.FindAsync(request.VideoId)).ToDto()
                 };
             }

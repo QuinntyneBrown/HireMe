@@ -20,7 +20,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(UpsertCandidate.Response), (int)HttpStatusCode.OK)]
-        public async Task<ActionResult<UpsertCandidate.Response>> Upsert([FromBody]UpsertCandidate.Request request)
+        public async Task<ActionResult<UpsertCandidate.Response>> Upsert([FromBody] UpsertCandidate.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -28,7 +28,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType((int)HttpStatusCode.OK)]
-        public async Task Remove([FromRoute]RemoveCandidate.Request request)
+        public async Task Remove([FromRoute] RemoveCandidate.Request request)
             => await _mediator.Send(request);
 
         [Authorize]
@@ -37,7 +37,7 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCandidateById.Response), (int)HttpStatusCode.OK)]
         [ProducesResponseType(typeof(string), (int)HttpStatusCode.NotFound)]
-        public async Task<ActionResult<GetCandidateById.Response>> GetById([FromRoute]GetCandidateById.Request request)
+        public async Task<ActionResult<GetCandidateById.Response>> GetById([FromRoute] GetCandidateById.Request request)
         {
             var response = await _mediator.Send(request);
 
@@ -55,6 +55,6 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetCandidates.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetCandidates.Response>> Get()
-            => await _mediator.Send(new GetCandidates.Request());           
+            => await _mediator.Send(new GetCandidates.Request());
     }
 }

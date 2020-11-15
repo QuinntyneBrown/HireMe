@@ -18,7 +18,7 @@ namespace BuildingBlocks.Core.Identity
         private IConfiguration _configuration;
         public TokenProvider(IConfiguration configuration)
             => _configuration = configuration;
-        
+
         public string Get(string uniqueName, List<Claim> customClaims = null)
         {
             var now = DateTime.UtcNow;
