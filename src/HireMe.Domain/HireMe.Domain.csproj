@@ -15,4 +15,8 @@
     <ProjectReference Include="..\..\building-blocks\BuildingBlocks.Core\BuildingBlocks.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\Identity\" />
+  </ItemGroup>
+
 </Project>
