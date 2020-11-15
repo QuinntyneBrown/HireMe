@@ -1,9 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
-import { takeUntil } from 'rxjs/operators';
+import { map, switchMap, takeUntil, tap } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/_core/auth.service';
+import { UsersService } from '../users.service';
+import { LocalStorageService } from 'src/app/_core/local-storage.service';
+import { currentUserKey, roles } from 'src/app/_core/constants';
 
 @Component({
   selector: 'app-login-page',
@@ -16,7 +19,9 @@ export class LoginPageComponent implements OnDestroy {
 
   constructor(
     private authService: AuthService,
-    private router: Router
+    private usersService: UsersService,
+    private router: Router,
+    private localStorageService: LocalStorageService
   ) { }
 
   public handleTryToLogin($event: { username: string, password: string }) {
@@ -27,9 +32,14 @@ export class LoginPageComponent implements OnDestroy {
     })
     .pipe(
       takeUntil(this._destroyed),
+      switchMap(x => this.usersService.current()),
+      tap(user => {
+        this.localStorageService.put({ name: currentUserKey, value: user });
+        this.authService.currentUser$.next(user);
+      }),
     )
     .subscribe(
-      () => {
+      (user) => {
         this.router.navigateByUrl('/');
       }
     );  

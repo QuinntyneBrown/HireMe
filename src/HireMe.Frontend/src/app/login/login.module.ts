@@ -4,6 +4,7 @@ import { LoginComponent } from './login/login.component';
 import { SharedModule } from '../_shared/shared.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { LoginPageComponent } from './login-page/login-page.component';
+import { UsersService } from './users.service';
 
 
 @NgModule({
@@ -12,7 +13,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
     LoginPageComponent
   ],
   providers: [
-
+    UsersService
   ],
   exports :[
     LoginComponent,

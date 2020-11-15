@@ -10,6 +10,7 @@ namespace HireMe.Domain.Features
             return new RoleDto
             {
                 RoleId = role.RoleId,
+                Name = role.Name
             };
         }
     }
