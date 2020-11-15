@@ -16,8 +16,8 @@ namespace HireMe.TestUtilities.Factories
 
                 configuration = new ConfigurationBuilder()
                     .AddInMemoryCollection(new Dictionary<string, string>() {
-                    { "Seed:DefaultUser:Username" ,"" },
-                    { "Seed:DefaultUser:Password" ,"" },
+                    { "Seed:DefaultUser:Username" ,"quinntynebrown@gmail.com" },
+                    { "Seed:DefaultUser:Password" ,"HireMe" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.TokenPath)}" ,"/api/users/token" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.ExpirationMinutes)}" ,"10080" },
                     { $"{nameof(Authentication)}:{nameof(Authentication.JwtKey)}", secret },

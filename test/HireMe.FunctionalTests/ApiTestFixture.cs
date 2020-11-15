@@ -14,20 +14,12 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Security.Cryptography;
 
 
 namespace HireMe.FunctionalTests
 {
     public class ApiTestFixture : WebApplicationFactory<Startup>
     {
-        private static string GenerateSecret()
-        {
-            var tripleDESCryptoServiceProvider = new TripleDESCryptoServiceProvider();
-            tripleDESCryptoServiceProvider.GenerateKey();
-            return Convert.ToBase64String(tripleDESCryptoServiceProvider.Key);
-        }
-
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Testing");
@@ -64,7 +56,7 @@ namespace HireMe.FunctionalTests
         public HttpClient CreateAuthenticatedClient(string token = null, string scheme = "Test")
         {
             if(string.IsNullOrEmpty(token))
-                token = TokenBuilder.CreateToken("Test User", new string[0]);
+                token = TokenFactory.CreateToken("Test User", Array.Empty<string>());
 
             var client = WithWebHostBuilder(builder =>
             {

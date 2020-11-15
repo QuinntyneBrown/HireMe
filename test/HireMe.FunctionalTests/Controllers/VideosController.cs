@@ -26,7 +26,6 @@ namespace HireMe.FunctionalTests.Controllers
 
             Assert.NotEmpty(response.Videos);
         }
+
     }
-
-
 }

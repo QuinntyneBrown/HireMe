@@ -25,16 +25,6 @@ namespace HireMe.Api
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            app.UseExceptionHandler(errorApp =>
-            {
-                errorApp.Use(async (context, next) =>
-                {
-                    Console.Write("wtf");
-
-                    await next();
-                });
-            });
-
             app.UseSwagger();
 
             app.UseCors("CorsPolicy");

@@ -1,15 +1,14 @@
 ﻿using BuildingBlocks.Core.Identity;
-using HireMe.TestUtilities.Factories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 
-namespace HireMe.TestUtilities.Builders
+namespace HireMe.TestUtilities.Factories
 {
-    public class TokenBuilder
+    public class TokenFactory
     {
         private static readonly ITokenProvider _tokenProvider;
-        static TokenBuilder()
+        static TokenFactory()
         {
             _tokenProvider = new TokenProvider(ConfigurationFactory.Create());
         }

@@ -27,6 +27,4 @@ namespace HireMe.FunctionalTests.Controllers
             Assert.NotEmpty(response.Answers);
         }
     }
-
-
 }

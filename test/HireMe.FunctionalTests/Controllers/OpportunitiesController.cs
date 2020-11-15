@@ -1,4 +1,5 @@
 using HireMe.Domain.Features.Opportunities;
+using HireMe.TestUtilities.Builders;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Xunit;
@@ -8,6 +9,8 @@ namespace HireMe.FunctionalTests.Controllers
     public class OpportunitiesController : IClassFixture<ApiTestFixture>
     {
         private readonly ApiTestFixture _factory;
+        private OpportunityBuilder OpportunityBuilder { get; } = new OpportunityBuilder();
+
         public OpportunitiesController(ApiTestFixture factory)
         {
             _factory = factory;
