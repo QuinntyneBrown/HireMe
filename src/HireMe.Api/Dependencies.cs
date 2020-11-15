@@ -15,12 +15,14 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Text;
 using System.Threading.Tasks;
 using HireMe.Domain.Features.Candidates;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 
 namespace HireMe.Api
 {
     public static class Dependencies
     {
-        public static void Configure(IServiceCollection services, IConfiguration configuration)
+        public static void Configure(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             services.AddSwaggerGen(options =>
             {
@@ -68,44 +70,47 @@ namespace HireMe.Api
 
             services.AddTransient<IHireMeDbContext, HireMeDbContext>();
 
-            var jwtSecurityTokenHandler = new JwtSecurityTokenHandler
+            if (!hostingEnvironment.IsEnvironment("Testing"))
             {
-                InboundClaimTypeMap = new Dictionary<string, string>()
-            };
+                var jwtSecurityTokenHandler = new JwtSecurityTokenHandler
+                {
+                    InboundClaimTypeMap = new Dictionary<string, string>()
+                };
 
-            services.AddAuthentication(x =>
-                {
-                    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                })
-                .AddJwtBearer(options =>
-                {
-                    options.RequireHttpsMetadata = false;
-                    options.SaveToken = true;
-                    options.SecurityTokenValidators.Clear();
-                    options.SecurityTokenValidators.Add(jwtSecurityTokenHandler);
-                    options.TokenValidationParameters = GetTokenValidationParameters(configuration);
-                    options.Events = new JwtBearerEvents
+                services.AddAuthentication(x =>
                     {
-                        OnMessageReceived = context =>
+                        x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                        x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                    })
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.SaveToken = true;
+                        options.SecurityTokenValidators.Clear();
+                        options.SecurityTokenValidators.Add(jwtSecurityTokenHandler);
+                        options.TokenValidationParameters = GetTokenValidationParameters(configuration);
+                        options.Events = new JwtBearerEvents
                         {
-                            context.Request.Query.TryGetValue("access_token", out StringValues token);
+                            OnMessageReceived = context =>
+                            {
+                                context.Request.Query.TryGetValue("access_token", out StringValues token);
 
-                            if (!string.IsNullOrEmpty(token)) context.Token = token;
+                                if (!string.IsNullOrEmpty(token)) context.Token = token;
 
-                            return Task.CompletedTask;
-                        }
-                    };
+                                return Task.CompletedTask;
+                            }
+                        };
+                    });
+
+                services.AddDbContext<HireMeDbContext>(options =>
+                {
+                    options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
+                        builder => builder.MigrationsAssembly("HireMe.Api")
+                            .EnableRetryOnFailure())
+                    .UseLoggerFactory(HireMeDbContext.ConsoleLoggerFactory)
+                    .EnableSensitiveDataLogging();
                 });
-
-            services.AddDbContext<HireMeDbContext>(options =>
-            {
-                options.UseSqlServer(configuration["Data:DefaultConnection:ConnectionString"],
-                    builder => builder.MigrationsAssembly("HireMe.Api")
-                        .EnableRetryOnFailure())
-                .UseLoggerFactory(HireMeDbContext.ConsoleLoggerFactory)
-                .EnableSensitiveDataLogging();
-            });
+            }
 
             services.AddControllers();
         }

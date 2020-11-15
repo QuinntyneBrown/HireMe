@@ -7,16 +7,17 @@ namespace HireMe.Api
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment hostingEnvironment)
         {
             Configuration = configuration;
+            HostingEnvironment = hostingEnvironment;
         }
-
+        public IWebHostEnvironment HostingEnvironment { get; }
         public IConfiguration Configuration { get; }
 
         public void ConfigureServices(IServiceCollection services)
         {
-            Dependencies.Configure(services, Configuration);
+            Dependencies.Configure(services, Configuration, HostingEnvironment);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
