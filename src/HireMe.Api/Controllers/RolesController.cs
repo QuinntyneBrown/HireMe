@@ -50,7 +50,7 @@ namespace HireMe.Api.Controllers
         }
 
         [Authorize]
-        [HttpGet(Name = "GetrolesRoute")]
+        [HttpGet(Name = "GetRolesRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetRoles.Response), (int)HttpStatusCode.OK)]

@@ -14,5 +14,4 @@ namespace HireMe.Core.Models
         public int? SortOrder { get; set; }
         public Opportunity Opportunity { get; set; }
     }
-
 }

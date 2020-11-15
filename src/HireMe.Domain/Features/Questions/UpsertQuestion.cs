@@ -47,6 +47,12 @@ namespace HireMe.Domain.Features.Questions
 
                 question.QuestionId = request.Question.QuestionId;
 
+                question.OpportunityId = request.Question.OpportunityId;
+
+                question.Body = request.Question.Body;
+
+                question.SortOrder = request.Question.SortOrder;
+
                 await _context.SaveChangesAsync(cancellationToken);
 
                 return new Response()

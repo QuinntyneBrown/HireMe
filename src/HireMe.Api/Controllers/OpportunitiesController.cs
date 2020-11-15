@@ -50,11 +50,19 @@ namespace HireMe.Api.Controllers
         }
 
         [Authorize]
-        [HttpGet(Name = "GetopportunitiesRoute")]
+        [HttpGet(Name = "GetOpportunitiesRoute")]
         [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
         [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
         [ProducesResponseType(typeof(GetOpportunities.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<GetOpportunities.Response>> Get()
             => await _mediator.Send(new GetOpportunities.Request());
+
+        [HttpGet("employeer/{employeerId}", Name = "GetOpportunitiesByEmployeerIdRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(GetOpportunitiesByEmployeerId.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetOpportunitiesByEmployeerId.Response>> Get([FromRoute] GetOpportunitiesByEmployeerId.Request request)
+            => await _mediator.Send(request);
+
     }
 }

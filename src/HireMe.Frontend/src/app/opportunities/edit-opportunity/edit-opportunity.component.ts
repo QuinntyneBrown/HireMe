@@ -5,6 +5,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Opportunity } from '../opportunity';
 import { takeUntil, map } from 'rxjs/operators';
 import { Subject } from 'rxjs';
+import { Employeer } from 'src/app/employeers/employeer';
+import { LocalStorageService } from 'src/app/_core/local-storage.service';
+import { employeerKey } from 'src/app/_core/constants';
 
 @Component({
   selector: 'app-edit-opportunity',
@@ -17,12 +20,13 @@ export class EditOpportunityComponent implements OnInit, OnDestroy {
   private readonly _destroyed: Subject<void> = new Subject();
 
   public form = new FormGroup({     
-    //name: new FormControl(this.opportunity.name, [Validators.required]),      
+    name: new FormControl("", [Validators.required]),      
   });
   
   constructor(
     private activatedRoute: ActivatedRoute,
     private opportunitiesService: OpportunitiesService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
@@ -33,7 +37,7 @@ export class EditOpportunityComponent implements OnInit, OnDestroy {
       this.opportunitiesService.getById({ opportunityId: this.activatedRoute.snapshot.params.id }).pipe(
         map(x => {
           this.form.patchValue({
-            //title: x.name,
+            name: x.name,            
           });
         })
       ).subscribe();
@@ -41,9 +45,11 @@ export class EditOpportunityComponent implements OnInit, OnDestroy {
   }
 
   public handleSaveClick(): void {
-    const opportunity: Opportunity = {} as Opportunity;
+    const employeer: Employeer = this.localStorageService.get({ name: employeerKey }) as Employeer;
 
-    //this.opportunity.name = this.form.value.name;
+    this.opportunity.name = this.form.value.name;
+    
+    this.opportunity.employeerId = employeer.employeerId;
 
     this.opportunitiesService.save({ opportunity: this.opportunity }).pipe(
       takeUntil(this._destroyed)
