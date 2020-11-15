@@ -16,6 +16,7 @@ namespace HireMe.Core.Data
         public DbSet<Candidate> Candidates { get; private set; }
         public DbSet<DigitalAsset> DigitalAssets { get; private set; }
         public DbSet<Employeer> Employeers { get; private set; }
+        public DbSet<Opportunity> Opportunities { get; private set; }
         public DbSet<Question> Questions { get; private set; }
         public DbSet<Role> Roles { get; private set; }
         public DbSet<User> Users { get; private set; }

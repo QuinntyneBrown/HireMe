@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace HireMe.Core.Models
@@ -7,6 +8,8 @@ namespace HireMe.Core.Models
     {
         [Key]
         public Guid RoleId { get; set; }
+        public string Name { get; set; }
+        public ICollection<User> Roles { get; set; } = new HashSet<User>();
     }
 
 }

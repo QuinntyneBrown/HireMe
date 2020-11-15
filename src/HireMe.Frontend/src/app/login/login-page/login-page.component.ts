@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../_core/auth.service';
+
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/_core/auth.service';
 
 @Component({
   selector: 'app-login-page',
@@ -30,9 +31,6 @@ export class LoginPageComponent implements OnDestroy {
     .subscribe(
       () => {
         this.router.navigateByUrl('/');
-      },
-      errorResponse => {
-        // handle error response
       }
     );  
   }

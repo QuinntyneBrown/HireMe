@@ -9,7 +9,7 @@ export class RedirectService {
 
   loginUrl = '/login';
 
-  lastPath: string;
+  lastPath: string = "";
 
   defaultPath = '/';
 

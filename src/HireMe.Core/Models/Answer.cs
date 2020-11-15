@@ -7,6 +7,9 @@ namespace HireMe.Core.Models
     {
         [Key]
         public Guid AnswerId { get; set; }
+        public Guid QuestionId { get; set; }
+        public Guid VideoId { get; set; }
+        public Guid CandidateId { get; set; }
     }
 
 }

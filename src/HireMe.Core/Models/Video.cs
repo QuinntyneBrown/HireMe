@@ -7,6 +7,7 @@ namespace HireMe.Core.Models
     {
         [Key]
         public Guid VideoId { get; set; }
+        public string YouTubeId { get; set; }
     }
 
 }

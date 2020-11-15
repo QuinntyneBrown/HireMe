@@ -7,6 +7,8 @@ namespace HireMe.Core.Models
     {
         [Key]
         public Guid CandidateId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
     }
 
 }
