@@ -19,6 +19,11 @@ const routes: Routes = [
         path: "opportunities",
         canActivate:[AuthGuard],
         loadChildren: () => import("src/app/opportunities/opportunities.module").then(m => m.OpportunitiesModule)
+      }, 
+      {
+        path: "employeers",
+        canActivate:[AuthGuard],
+        loadChildren: () => import("src/app/employeers/employeers.module").then(m => m.EmployeersModule)
       },           
     ],
   }

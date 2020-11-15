@@ -4,8 +4,17 @@
 
 <form novalidate autocomplete="off" spellcheck="false" [formGroup]="form">
   <mat-form-field>
-    <input matInput placeholder="Name" id="name" formControlName="name">
+    <input matInput placeholder="First Name" id="firstName" formControlName="firstName">
   </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Last Name" id="lastName" formControlName="lastName">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput placeholder="Email" id="emai" formControlName="email">
+  </mat-form-field>
+
 </form>
 
 <div class="editor__actions">

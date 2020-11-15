@@ -22,5 +22,14 @@ namespace HireMe.Api.Controllers
         [ProducesResponseType(typeof(Authenticate.Response), (int)HttpStatusCode.OK)]
         public async Task<ActionResult<Authenticate.Response>> SignIn(Authenticate.Request request)
             => await _mediator.Send(request);
+
+        [Authorize]
+        [HttpGet("current", Name = "GetCurrentUserRoute")]
+        [ProducesResponseType((int)HttpStatusCode.InternalServerError)]
+        [ProducesResponseType(typeof(ProblemDetails), (int)HttpStatusCode.BadRequest)]
+        [ProducesResponseType(typeof(GetCurrentUser.Response), (int)HttpStatusCode.OK)]
+        public async Task<ActionResult<GetCurrentUser.Response>> Get([FromRoute] GetCurrentUser.Request request)
+            => await _mediator.Send(request);
+
     }
 }

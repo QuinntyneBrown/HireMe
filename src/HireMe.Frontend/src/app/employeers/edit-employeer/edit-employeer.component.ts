@@ -17,7 +17,9 @@ export class EditEmployeerComponent implements OnInit, OnDestroy {
   private readonly _destroyed: Subject<void> = new Subject();
 
   public form = new FormGroup({     
-    //name: new FormControl(this.employeer.name, [Validators.required]),      
+    firstName: new FormControl(this.employeer.firstName, [Validators.required]),
+    lastName: new FormControl(this.employeer.lastName, [Validators.required]),
+    email: new FormControl(this.employeer.email, [Validators.required]),      
   });
   
   constructor(
@@ -33,7 +35,9 @@ export class EditEmployeerComponent implements OnInit, OnDestroy {
       this.employeersService.getById({ employeerId: this.activatedRoute.snapshot.params.id }).pipe(
         map(x => {
           this.form.patchValue({
-            //title: x.name,
+            firstName: x.firstName,
+            lastName: x.lastName,
+            email: x.email
           });
         })
       ).subscribe();
@@ -43,14 +47,16 @@ export class EditEmployeerComponent implements OnInit, OnDestroy {
   public handleSaveClick(): void {
     const employeer: Employeer = {} as Employeer;
 
-    //this.employeer.name = this.form.value.name;
+    this.employeer.firstName = this.form.value.firstName;
+    this.employeer.lastName = this.form.value.lastName;
+    this.employeer.email = this.form.value.email;
 
     this.employeersService.save({ employeer: this.employeer }).pipe(
       takeUntil(this._destroyed)
     ).subscribe(
       () => this.form.reset(),
       errorResponse => {
-        // handle error
+        
       }
     );
 

@@ -1,11 +1,10 @@
+using BuildingBlocks.Core.Identity;
 using HireMe.Core.Data;
 using HireMe.Core.Models;
-using BuildingBlocks.Core.Identity;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.IdentityModel.Tokens.Jwt;
+using System.Linq;
 using System.Security.Claims;
 using System.Threading;
 using System.Threading.Tasks;
@@ -42,7 +41,8 @@ namespace HireMe.Domain.Features.Identity
             public async Task<Response> Handle(Request request, CancellationToken cancellationToken)
             {
                 var user = await _context.Users
-                    .SingleOrDefaultAsync(x => x.Username.ToLower() == request.Username.ToLower());
+                    .Include(x => x.Roles)
+                    .SingleOrDefaultAsync(x => x.Username.ToLower() == request.Username.ToLower(), cancellationToken: cancellationToken);
 
                 if (user == null)
                     throw new Exception();
@@ -52,7 +52,7 @@ namespace HireMe.Domain.Features.Identity
 
                 return new Response()
                 {
-                    AccessToken = _tokenProvider.Get(request.Username, null),
+                    AccessToken = _tokenProvider.Get(request.Username, user?.Roles.Select(x => new Claim("http://schemas.microsoft.com/ws/2008/06/identity/claims/role", x.Name)).ToList()),
                     UserId = user.UserId
                 };
             }

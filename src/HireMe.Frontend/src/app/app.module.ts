@@ -25,7 +25,7 @@ import { baseUrl } from './_core/constants';
   ],
   providers: [{
     provide: baseUrl,
-    useValue: "https://localhost:44359/"
+    useValue: "https://localhost:5001/"
 
   }],
   bootstrap: [AppContainerComponent]

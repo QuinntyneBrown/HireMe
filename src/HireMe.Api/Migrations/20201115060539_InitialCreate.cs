@@ -53,6 +53,7 @@ namespace HireMe.Api.Migrations
                 columns: table => new
                 {
                     EmployeerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     LastName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },

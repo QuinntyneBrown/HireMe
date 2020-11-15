@@ -10,6 +10,9 @@ namespace HireMe.Domain.Features
             return new EmployeerDto
             {
                 EmployeerId = employeer.EmployeerId,
+                Email = employeer.Email,
+                FirstName = employeer.FirstName,
+                LastName = employeer.LastName,
             };
         }
     }

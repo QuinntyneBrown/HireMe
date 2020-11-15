@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HireMe.Api.Migrations
 {
     [DbContext(typeof(HireMeDbContext))]
-    [Migration("20201115045437_InitialCreate")]
+    [Migration("20201115060539_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -83,6 +83,9 @@ namespace HireMe.Api.Migrations
                     b.Property<Guid>("EmployeerId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");

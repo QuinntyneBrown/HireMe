@@ -56,6 +56,30 @@ namespace HireMe.Core.Seeding
                 context.Roles.Add(role);
             }
 
+            var role1 = context.Roles.SingleOrDefault(x => x.Name == "Employeer");
+
+            if (role1 == null)
+            {
+                role1 = new Role
+                {
+                    Name = "Employeer"
+                };
+
+                context.Roles.Add(role1);
+            }
+
+            var role2 = context.Roles.SingleOrDefault(x => x.Name == "Candidate");
+
+            if (role2 == null)
+            {
+                role2 = new Role
+                {
+                    Name = "Candidate"
+                };
+
+                context.Roles.Add(role2);
+            }
+
             context.SaveChanges();
         }
     }
