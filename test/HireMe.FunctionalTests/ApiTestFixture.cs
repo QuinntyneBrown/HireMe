@@ -20,6 +20,7 @@ namespace HireMe.FunctionalTests
 {
     public class ApiTestFixture : WebApplicationFactory<Startup>
     {
+        public HireMeDbContext Context { get; private set; }
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             builder.UseEnvironment("Testing");
@@ -44,11 +45,11 @@ namespace HireMe.FunctionalTests
                 {
                     var scopedServices = scope.ServiceProvider;
                     
-                    var context = scopedServices.GetRequiredService<HireMeDbContext>();
+                    Context = scopedServices.GetRequiredService<HireMeDbContext>();
 
-                    context.Database.EnsureCreated();
+                    Context.Database.EnsureCreated();
 
-                    SeedData.Seed(context, ConfigurationFactory.Create());
+                    SeedData.Seed(Context, ConfigurationFactory.Create());
                 }
             });
         }

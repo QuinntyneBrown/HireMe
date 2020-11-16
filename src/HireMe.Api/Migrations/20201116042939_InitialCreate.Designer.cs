@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HireMe.Api.Migrations
 {
     [DbContext(typeof(HireMeDbContext))]
-    [Migration("20201115060539_InitialCreate")]
+    [Migration("20201116042939_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
