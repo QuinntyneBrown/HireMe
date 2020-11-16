@@ -17,6 +17,7 @@ using System.Threading.Tasks;
 using HireMe.Domain.Features.Candidates;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using BuildingBlocks.AspNetCore.Services;
 
 namespace HireMe.Api
 {
@@ -61,6 +62,8 @@ namespace HireMe.Api
                 .AllowCredentials()));
 
             services.AddHttpContextAccessor();
+
+            services.AddTransient<ICurrentUserService, CurrentUserService>();
 
             services.AddSingleton<IPasswordHasher, PasswordHasher>();
 
