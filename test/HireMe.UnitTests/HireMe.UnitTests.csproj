@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -27,6 +27,10 @@
     <ProjectReference Include="..\..\src\HireMe.Domain\HireMe.Domain.csproj" />
     <ProjectReference Include="..\..\src\HireMe.Api\HireMe.Api.csproj" />
     <ProjectReference Include="..\HireMe.TestUtilities\HireMe.TestUtilities.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Core\Models\" />
   </ItemGroup>
 
 </Project>
